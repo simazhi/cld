@@ -34,27 +34,18 @@ library(tidyverse)
 
 ```{r}
 PATH <- here()
-PACKAGENAME <- "CHIDEOD" #Chinese Ideophone Database R
+PACKAGENAME <- "CLD" #Chinese Lexical Database R
 ```
 
 
-# Getting data from osfr
+# Reading in the data
 
 ```{r}
-library(osfr)
-
-cr_project <- osf_retrieve_node("kpwgf") # OSF Chinese Ideophone Database
-cr_project %>%
-  osf_ls_files() %>%
-  filter(str_detect(name, "rds")) %>%
-  osf_download(overwrite = TRUE)
+# load("chineselexicaldatabase2.1.rda")
+load("cld_extended.rda")
+df <- cld_extended
 ```
 
-read in data as df
-```{r}
-df <- read_rds("chideod.rds")
-df
-```
 
 
 
@@ -73,19 +64,22 @@ datapackage_skeleton(name = PACKAGENAME,
 #write.csv(x = df,file = file.path(PATH, "chideod.csv"), row.names = FALSE)
 
 # write raw data to rds
-write_csv(df, file.path(PATH, "chideod.csv"))
+#write_csv(df, file.path(PATH, "cld.csv"))
 
 # this works because we called datapackage_skeleton() first.
-use_raw_dataset(file.path(PATH, "chideod.csv"))
+#use_raw_dataset(file.path(PATH, "cld.csv"))
+
+# Just try the rda file?
+use_raw_dataset(file.path(PATH, "cld_extended.rda"))
 ```
 
 
 # Add a data processing script.
 
 ```{r}
-use_processing_script(file = "chinese_database.Rmd",
+use_processing_script(file = "chinese_lexical_database.Rmd",
                       author = "Thomas Van Hoey",
-                      title = "Process OSF repository data into datapackage")
+                      title = "Process CLD into data package")
 ```
 
 
@@ -96,12 +90,12 @@ use_processing_script(file = "chinese_database.Rmd",
 ---
 title: Process OSF repository data into datapackage
 author: Thomas Van Hoey
-date:  8 July, 2019
+date:  10 October, 2019
 output_format: html_document
 ---
 
 ```{r}
-chideod <- df
+cld <- df
 ```
 
 ```
@@ -109,14 +103,14 @@ chideod <- df
 # Let DataPackageR know about the data objects to store in the package.
 
 ```{r}
-use_data_object("chideod")
+use_data_object("cld")
 ```
 
 # Build the package (for the first time).
 
 ```{r}
 options("DataPackageR_interact" = FALSE)
-package_build(packageName = file.path(PATH, "CHIDEOD"),
+package_build(packageName = file.path(PATH, "CLD"),
               install = FALSE)
 ```
 
@@ -131,99 +125,311 @@ File can be found under `data-raw`, the `documentation.R` file
 We’ll fill this in and save the resulting file.
 
 ```
-#' CHIDEOD
-#' A data package for CHIDEOD.
+#' CLD
+#' A data package for CLD.
 #' @docType package
-#' @aliases CHIDEOD-package
-#' @title CHIDEOD -- The Chinese Ideophone Database
-#' @name CHIDEOD
-#' @description AThis package contains the Chinese Ideophone Database CHIDEOD.
-#' @details Use \code{data(package='CHIDEOD')$results[, 3]} to see a list of available data sets in this data package
+#' @aliases CLD-package
+#' @title CLD -- The Chinese Lexical Database
+#' @name CLD
+#' @description This package contains the Chinese Lexical Database CLD
+#' @details Use \code{data(package='CLD')$results[, 3]} to see a list of available data sets in this data package
 #'     and/or DataPackageR::load_all
 #' _datasets() to load them.
 #' @seealso
-#' \link{chideod}
+#' \link{cld}
 NULL
 
 
 
 #' Detailed description of the data
-#' @name chideod
+#' @name cld
 #' @docType data
-#' @title The Chinese Ideophone Database (CHIDEOD)
-#' @format a \code{tbl_df} containing the following fields:
+#' @title The Chinese Lexical Database (CLD)
+#' @format a \code{data.frame} containing the following fields:
 #' \describe{
-#' \item{traditional}{}
-#' \item{simplified}{}
-#' \item{pinyintone}{}
-#' \item{pinyinnum}{}
-#' \item{pinyinnone}{}
-#' \item{HYDCD}{}
-#' \item{zdic}{}
-#' \item{Kroll}{}
-#' \item{MC}{}
-#' \item{OC}{}
-#' \item{radsup}{}
+#' \item{WordSimp}{}
 #' \item{S1}{}
 #' \item{S2}{}
 #' \item{S3}{}
 #' \item{S4}{}
+#' \item{WordTrad}{}
 #' \item{T1}{}
 #' \item{T2}{}
 #' \item{T3}{}
 #' \item{T4}{}
-#' \item{morphology}{}
-#' \item{S1.charfreq}{}
-#' \item{S2.charfreq}{}
-#' \item{S3.charfreq}{}
-#' \item{S4.charfreq}{}
-#' \item{S1.famfreq}{}
-#' \item{S2.famfreq}{}
-#' \item{S3.famfreq}{}
-#' \item{S4.famfreq}{}
-#' \item{S1.sem}{}
-#' \item{S2.sem}{}
-#' \item{S3.sem}{}
-#' \item{S4.sem}{}
-#' \item{S1.semfreq}{}
-#' \item{S2.semfreq}{}
-#' \item{S3.semfreq}{}
-#' \item{S4.semfreq}{}
-#' \item{S1.semfam}{}
-#' \item{S2.semfam}{}
-#' \item{S3.semfam}{}
-#' \item{S4.semfam}{}
-#' \item{S1.phon}{}
-#' \item{S2.phon}{}
-#' \item{S3.phon}{}
-#' \item{S4.phon}{}
-#' \item{S1.phonfreq}{}
-#' \item{S2.phonfreq}{}
-#' \item{S3.phonfreq}{}
-#' \item{S4.phonfreq}{}
-#' \item{S1.phonfam}{}
-#' \item{S2.phonfam}{}
-#' \item{S3.phonfam}{}
-#' \item{S4.phonfam}{}
-#' \item{sensorymod}{}
-#' \item{variant}{}
-#' \item{note}{}
-#' \item{datasource}{}
-#' \item{stage}{}
-#' \item{ASBC.dp}{}
-#' \item{ASBC.philosophy}{}
-#' \item{ASBC.literature}{}
-#' \item{ASBC.life}{}
-#' \item{ASBC.society}{}
-#' \item{ASBC.science}{}
-#' \item{ASBC.art}{}
+#' \item{Length}{}
+#' \item{C1Structure}{}
+#' \item{C2Structure}{}
+#' \item{C3Structure}{}
+#' \item{C4Structure}{}
+#' \item{C1Type}{}
+#' \item{C2Type}{}
+#' \item{C3Type}{}
+#' \item{C4Type}{}
+#' \item{Pinyin}{}
+#' \item{C1Pinyin}{}
+#' \item{C2Pinyin}{}
+#' \item{C3Pinyin}{}
+#' \item{C4Pinyin}{}
+#' \item{IPA}{}
+#' \item{C1IPA}{}
+#' \item{C2IPA}{}
+#' \item{C3IPA}{}
+#' \item{C4IPA}{}
+#' \item{InitialPhoneme}{}
+#' \item{FinalPhoneme}{}
+#' \item{C1PRPinyin}{}
+#' \item{C2PRPinyin}{}
+#' \item{C3PRPinyin}{}
+#' \item{C4PRPinyin}{}
+#' \item{Phonemes}{}
+#' \item{C1Phonemes}{}
+#' \item{C2Phonemes}{}
+#' \item{C3Phonemes}{}
+#' \item{C4Phonemes}{}
+#' \item{C1Tone}{}
+#' \item{C2Tone}{}
+#' \item{C3Tone}{}
+#' \item{C4Tone}{}
+#' \item{Frequency}{}
+#' \item{C1Frequency}{}
+#' \item{C2Frequency}{}
+#' \item{C3Frequency}{}
+#' \item{C4Frequency}{}
+#' \item{FrequencyRaw}{}
+#' \item{C1FrequencyRaw}{}
+#' \item{C2FrequencyRaw}{}
+#' \item{C3FrequencyRaw}{}
+#' \item{C4FrequencyRaw}{}
+#' \item{FrequencySUBTL}{}
+#' \item{C1FrequencySUBTL}{}
+#' \item{C2FrequencySUBTL}{}
+#' \item{C3FrequencySUBTL}{}
+#' \item{C4FrequencySUBTL}{}
+#' \item{FrequencyRawSUBTL}{}
+#' \item{C1FrequencyRawSUBTL}{}
+#' \item{C2FrequencyRawSUBTL}{}
+#' \item{C3FrequencyRawSUBTL}{}
+#' \item{C4FrequencyRawSUBTL}{}
+#' \item{FrequencyWeibo}{}
+#' \item{C1FrequencyWeibo}{}
+#' \item{C2FrequencyWeibo}{}
+#' \item{C3FrequencyWeibo}{}
+#' \item{C4FrequencyWeibo}{}
+#' \item{FrequencyRawWeibo}{}
+#' \item{C1FrequencyRawWeibo}{}
+#' \item{C2FrequencyRawWeibo}{}
+#' \item{C3FrequencyRawWeibo}{}
+#' \item{C4FrequencyRawWeibo}{}
+#' \item{PhonologicalFrequency}{}
+#' \item{C1PhonologicalFrequency}{}
+#' \item{C2PhonologicalFrequency}{}
+#' \item{C3PhonologicalFrequency}{}
+#' \item{C4PhonologicalFrequency}{}
+#' \item{C1FamilySize}{}
+#' \item{C2FamilySize}{}
+#' \item{C3FamilySize}{}
+#' \item{C4FamilySize}{}
+#' \item{C1FamilyFrequency}{}
+#' \item{C2FamilyFrequency}{}
+#' \item{C3FamilyFrequency}{}
+#' \item{C4FamilyFrequency}{}
+#' \item{Strokes}{}
+#' \item{C1Strokes}{}
+#' \item{C2Strokes}{}
+#' \item{C3Strokes}{}
+#' \item{C4Strokes}{}
+#' \item{C1Pixels}{}
+#' \item{C2Pixels}{}
+#' \item{C3Pixels}{}
+#' \item{C4Pixels}{}
+#' \item{C1PictureSize}{}
+#' \item{C2PictureSize}{}
+#' \item{C3PictureSize}{}
+#' \item{C4PictureSize}{}
+#' \item{C1OLDPixels}{}
+#' \item{C2OLDPixels}{}
+#' \item{C3OLDPixels}{}
+#' \item{C4OLDPixels}{}
+#' \item{PhonologicalN}{}
+#' \item{C1PhonologicalN}{}
+#' \item{C2PhonologicalN}{}
+#' \item{C3PhonologicalN}{}
+#' \item{C4PhonologicalN}{}
+#' \item{PLD}{}
+#' \item{C1PLD}{}
+#' \item{C2PLD}{}
+#' \item{C3PLD}{}
+#' \item{C4PLD}{}
+#' \item{C1SR}{}
+#' \item{C2SR}{}
+#' \item{C3SR}{}
+#' \item{C4SR}{}
+#' \item{C1SRFrequency}{}
+#' \item{C2SRFrequency}{}
+#' \item{C3SRFrequency}{}
+#' \item{C4SRFrequency}{}
+#' \item{C1SRFamilySize}{}
+#' \item{C2SRFamilySize}{}
+#' \item{C3SRFamilySize}{}
+#' \item{C4SRFamilySize}{}
+#' \item{C1SRStrokes}{}
+#' \item{C2SRStrokes}{}
+#' \item{C3SRStrokes}{}
+#' \item{C4SRStrokes}{}
+#' \item{C1PR}{}
+#' \item{C2PR}{}
+#' \item{C3PR}{}
+#' \item{C4PR}{}
+#' \item{C1PRFrequency}{}
+#' \item{C2PRFrequency}{}
+#' \item{C3PRFrequency}{}
+#' \item{C4PRFrequency}{}
+#' \item{C1PRFamilySize}{}
+#' \item{C2PRFamilySize}{}
+#' \item{C3PRFamilySize}{}
+#' \item{C4PRFamilySize}{}
+#' \item{C1PRStrokes}{}
+#' \item{C2PRStrokes}{}
+#' \item{C3PRStrokes}{}
+#' \item{C4PRStrokes}{}
+#' \item{C1PRRegularity}{}
+#' \item{C2PRRegularity}{}
+#' \item{C3PRRegularity}{}
+#' \item{C4PRRegularity}{}
+#' \item{C1PRFriends}{}
+#' \item{C2PRFriends}{}
+#' \item{C3PRFriends}{}
+#' \item{C4PRFriends}{}
+#' \item{C1PREnemiesTypes}{}
+#' \item{C2PREnemiesTypes}{}
+#' \item{C3PREnemiesTypes}{}
+#' \item{C4PREnemiesTypes}{}
+#' \item{C1PREnemiesTokens}{}
+#' \item{C2PREnemiesTokens}{}
+#' \item{C3PREnemiesTokens}{}
+#' \item{C4PREnemiesTokens}{}
+#' \item{C1PRFriendsFrequency}{}
+#' \item{C2PRFriendsFrequency}{}
+#' \item{C3PRFriendsFrequency}{}
+#' \item{C4PRFriendsFrequency}{}
+#' \item{C1PREnemiesFrequency}{}
+#' \item{C2PREnemiesFrequency}{}
+#' \item{C3PREnemiesFrequency}{}
+#' \item{C4PREnemiesFrequency}{}
+#' \item{C1PRBackwardEnemiesTypes}{}
+#' \item{C2PRBackwardEnemiesTypes}{}
+#' \item{C3PRBackwardEnemiesTypes}{}
+#' \item{C4PRBackwardEnemiesTypes}{}
+#' \item{C1PRBackwardEnemiesTokens}{}
+#' \item{C2PRBackwardEnemiesTokens}{}
+#' \item{C3PRBackwardEnemiesTokens}{}
+#' \item{C4PRBackwardEnemiesTokens}{}
+#' \item{C1PRBackwardEnemiesFrequency}{}
+#' \item{C2PRBackwardEnemiesFrequency}{}
+#' \item{C3PRBackwardEnemiesFrequency}{}
+#' \item{C4PRBackwardEnemiesFrequency}{}
+#' \item{MeanPhonemeFrequency}{}
+#' \item{C1MeanPhonemeFrequency}{}
+#' \item{C2MeanPhonemeFrequency}{}
+#' \item{C3MeanPhonemeFrequency}{}
+#' \item{C4MeanPhonemeFrequency}{}
+#' \item{MinPhonemeFrequency}{}
+#' \item{C1MinPhonemeFrequency}{}
+#' \item{C2MinPhonemeFrequency}{}
+#' \item{C3MinPhonemeFrequency}{}
+#' \item{C4MinPhonemeFrequency}{}
+#' \item{MaxPhonemeFrequency}{}
+#' \item{C1MaxPhonemeFrequency}{}
+#' \item{C2MaxPhonemeFrequency}{}
+#' \item{C3MaxPhonemeFrequency}{}
+#' \item{C4MaxPhonemeFrequency}{}
+#' \item{C1InitialPhonemeFrequency}{}
+#' \item{C2InitialPhonemeFrequency}{}
+#' \item{C3InitialPhonemeFrequency}{}
+#' \item{C4InitialPhonemeFrequency}{}
+#' \item{MeanDiphoneFrequency}{}
+#' \item{C1MeanDiphoneFrequency}{}
+#' \item{C2MeanDiphoneFrequency}{}
+#' \item{C3MeanDiphoneFrequency}{}
+#' \item{C4MeanDiphoneFrequency}{}
+#' \item{MinDiphoneFrequency}{}
+#' \item{C1MinDiphoneFrequency}{}
+#' \item{C2MinDiphoneFrequency}{}
+#' \item{C3MinDiphoneFrequency}{}
+#' \item{C4MinDiphoneFrequency}{}
+#' \item{MaxDiphoneFrequency}{}
+#' \item{C1MaxDiphoneFrequency}{}
+#' \item{C2MaxDiphoneFrequency}{}
+#' \item{C3MaxDiphoneFrequency}{}
+#' \item{C4MaxDiphoneFrequency}{}
+#' \item{C1InitialDiphoneFrequency}{}
+#' \item{C2InitialDiphoneFrequency}{}
+#' \item{C3InitialDiphoneFrequency}{}
+#' \item{C4InitialDiphoneFrequency}{}
+#' \item{TransitionalDiphone1Frequency}{}
+#' \item{TransitionalDiphone2Frequency}{}
+#' \item{TransitionalDiphone3Frequency}{}
+#' \item{C1Friends}{}
+#' \item{C2Friends}{}
+#' \item{C3Friends}{}
+#' \item{C4Friends}{}
+#' \item{C1HomographTypes}{}
+#' \item{C2HomographTypes}{}
+#' \item{C3HomographTypes}{}
+#' \item{C4HomographTypes}{}
+#' \item{C1HomographTokens}{}
+#' \item{C2HomographTokens}{}
+#' \item{C3HomographTokens}{}
+#' \item{C4HomographTokens}{}
+#' \item{C1FriendsFrequency}{}
+#' \item{C2FriendsFrequency}{}
+#' \item{C3FriendsFrequency}{}
+#' \item{C4FriendsFrequency}{}
+#' \item{C1HomographsFrequency}{}
+#' \item{C2HomographsFrequency}{}
+#' \item{C3HomographsFrequency}{}
+#' \item{C4HomographsFrequency}{}
+#' \item{C1HomophoneTypes}{}
+#' \item{C2HomophoneTypes}{}
+#' \item{C3HomophoneTypes}{}
+#' \item{C4HomophoneTypes}{}
+#' \item{C1HomophoneTokens}{}
+#' \item{C2HomophoneTokens}{}
+#' \item{C3HomophoneTokens}{}
+#' \item{C4HomophoneTokens}{}
+#' \item{C1HomophonesFrequency}{}
+#' \item{C2HomophonesFrequency}{}
+#' \item{C3HomophonesFrequency}{}
+#' \item{C4HomophonesFrequency}{}
+#' \item{C1Entropy}{}
+#' \item{C12Entropy}{}
+#' \item{C123Entropy}{}
+#' \item{C1BackwardEntropy}{}
+#' \item{C12BackwardEntropy}{}
+#' \item{C123BackwardEntropy}{}
+#' \item{C1RE}{}
+#' \item{C2RE}{}
+#' \item{PMI}{}
+#' \item{PSPMI}{}
+#' \item{TScore}{}
+#' \item{PSTScore}{}
+#' \item{C1ConditionalProbability}{}
+#' \item{C12ConditionalProbability}{}
+#' \item{C123ConditionalProbability}{}
+#' \item{C1BackwardConditionalProbability}{}
+#' \item{C12BackwardConditionalProbability}{}
+#' \item{C123BackwardConditionalProbability}{}
+#' \item{EntropyCharacterFrequencies}{}
 #' }
-#' @source The data comes from https://osf.io/kpwg.
-#' 
-#' 
+#' @source The data comes from http://www.chineselexicaldatabase.com.
 #' @seealso
-#' \link{CHIDEOD}
+#' \link{CLD}
 NULL
+
+
+
+
 
 ```
 
@@ -240,27 +446,32 @@ DataPackageR::document(package_path)
 ## the DESCRIPTION file
 
 ```
-Package: CHIDEOD
-Title: Data package containing the Chinese Ideophone Database
-Version: 0.8
-Authors@R: 
+Package: CLD
+Title: Data package containing the Chinese Lexical Database
+Version: 2.1
+Authors@R: c(
     person(given = "Thomas",
            family = "Van Hoey",
-           role = c("aut", "cre"),
-           email = "thomas_van_hoey@hotmail.com")
-Description: This package contains the contents of the Chinese Ideophone Database CHIDEOD.
-License: GNU General Public License v2.0
+           role = c("cre"),
+           email = "thomas_van_hoey@hotmail.com"),
+    person("Ching Chu", "Sun", email = "ching-chu.sun@uni-tuebingen.de", role = c("aut")),
+    person("Peter", "Hendrix", email = "peter.hendrix@gmail.com", role = c("aut")),
+    person("Jianqiang", "Ma", email = "jianqiang.ma@uni-tuebingen.de", role = c("aut")),
+    person("Rolf Harald", "Baayen", email = "harald.baayen@uni-tuebingen.de", role = c("aut")))
+Description: This package contains the contents of the Chinese Lexical Database CLD
+License: GNU General Public License
 Encoding: UTF-8
 LazyData: true
-DataVersion: 0.5.0
+DataVersion: 2.1.0
 Roxygen: list(markdown = TRUE)
-Date: 2019-07-08
+Date: 2019-10-10
 Suggests: 
     knitr,
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 ```
+
 
 ```{r}
 # ensure we run document() from the DataPackageR namespace and not document() from roxygen or devtools.
@@ -281,15 +492,20 @@ package_build(file.path(PATH, PACKAGENAME))
 
 ```{r}
 library(devtools)
-install_github("simazhi/chinese_ideophone_database/CHIDEOD")
+# because privat repo so you need my authorisation token
+# I deleted it because it's like a password
+AUTH_TOKEN <- ""
+devtools::install_github("simazhi/cld/CLD", 
+                         auth_token = AUTH_TOKEN)
+#remotes::install_github("simazhi/cld/CLD")
 #detach(package:devtools,unload = TRUE)
 #install.packages("CHIDEOD_0.8.tar.gz", type = "source")
 
-library(CHIDEOD)
+library(CLD)
 
-data(package = "CHIDEOD")
+data(package = "CLD")
 
-chideod # so it worked, the data is now here
+cld # so it worked, the data is now here
 ```
 
 
