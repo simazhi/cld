@@ -19,7 +19,7 @@ Note, however, that the psycholinguistic findings of the CLD all still relate to
 
 The CLD package can be installed as follows:
 
-```
+```{r, eval = FALSE}
 devtools::install_github("simazhi/cld/CLD", 
                          auth_token = AUTH_TOKEN) # need token as long as it's private
 ```
