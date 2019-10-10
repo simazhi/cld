@@ -1,9 +1,9 @@
-# CLD -- the Chinese Lexical Database
+# CLD — the Chinese Lexical Database
 
 This is a wrapper around the .rda file provided at http://www.chineselexicaldatabase.com/index.php
 
 The Chinese Lexical Database, developed by Sun et al. (2018) is a large-scale database for Mandarin Chinese, in simplified characters.
-The paper can be foudn here:
+The paper can be found here:
 
 Sun, C. C., Hendrix, P., Ma, J.Q. & Baayen, R. H. (2018). Chinese Lexical Database (CLD): A large-scale lexical database for simplified Mandarin Chinese. Behavior Research Methods, https://doi.org/10.3758/s13428-018-1038-3.
 
