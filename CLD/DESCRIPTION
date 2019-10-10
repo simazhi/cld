@@ -1,0 +1,24 @@
+Package: CLD
+Title: Data package containing the Chinese Lexical Database
+Version: 2.1
+Authors@R: c(
+    person(given = "Thomas",
+           family = "Van Hoey",
+           role = c("cre"),
+           email = "thomas_van_hoey@hotmail.com"),
+    person("Ching Chu", "Sun", email = "ching-chu.sun@uni-tuebingen.de", role = c("aut")),
+    person("Peter", "Hendrix", email = "peter.hendrix@gmail.com", role = c("aut")),
+    person("Jianqiang", "Ma", email = "jianqiang.ma@uni-tuebingen.de", role = c("aut")),
+    person("Rolf Harald", "Baayen", email = "harald.baayen@uni-tuebingen.de", role = c("aut")))
+Description: This package contains the contents of the Chinese Lexical Database CLD
+License: GNU General Public License
+Encoding: UTF-8
+LazyData: true
+DataVersion: 2.1.0
+Roxygen: list(markdown = TRUE)
+Date: 2019-10-10
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1

@@ -1,0 +1,8 @@
+configuration:
+  files:
+    chinese_lexical_database.Rmd:
+      enabled: yes
+  objects:
+  - cld
+  render_root:
+    tmp: '202550'
