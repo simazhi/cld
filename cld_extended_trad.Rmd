@@ -1,0 +1,52 @@
+---
+title: "cld_expand"
+author: "Thomas Van Hoey"
+date: "10-10-2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(CLD)
+library(tmcn)
+library(tidyverse)
+```
+
+Goal: to extend the current CLD with traditional characters, just for easier access in the future.
+
+The measures all still only hold for simplified characters.
+
+```{r}
+cld %>%
+  mutate(WordTrad = toTrad(Word, rev = FALSE)) %>%
+  rename(WordSimp = Word,
+         S1 = C1,
+         S2 = C2,
+         S3 = C3,
+         S4 = C4) %>%
+  mutate(T1 = toTrad(S1, rev = FALSE),
+         T2 = toTrad(S2, rev = FALSE),
+         T3 = toTrad(S3, rev = FALSE),
+         T4 = toTrad(S4, rev = FALSE)) %>%
+  select(matches("Word|[ST][1234]"), everything()) -> cld_extended
+```
+
+
+
+```{r}
+save(cld_extended, file = "cld_extended.rda")
+```
+
+```{r}
+rm(cld_extended)
+```
+
+```{r}
+load("cld_extended.rda")
+cld_extended
+```
+
+The extended CLD is now saved.
