@@ -1,32 +1,32 @@
-TRACE [2019-10-10 20:26:46] Logging to /Users/Thomas/Google Drive/chinese_lexical_database/CLD/inst/extdata/Logfiles/processing.log
-TRACE [2019-10-10 20:26:46] Processing data
-TRACE [2019-10-10 20:26:46] Reading yaml configuration
-TRACE [2019-10-10 20:26:46] Found /Users/Thomas/Google Drive/chinese_lexical_database/CLD/data-raw/chinese_lexical_database.Rmd
-TRACE [2019-10-10 20:26:46] Processing 1 of 1: /Users/Thomas/Google Drive/chinese_lexical_database/CLD/data-raw/chinese_lexical_database.Rmd
+TRACE [2019-10-10 21:08:35] Logging to /Users/Thomas/Google Drive/chinese_lexical_database/CLD/inst/extdata/Logfiles/processing.log
+TRACE [2019-10-10 21:08:35] Processing data
+TRACE [2019-10-10 21:08:35] Reading yaml configuration
+TRACE [2019-10-10 21:08:35] Found /Users/Thomas/Google Drive/chinese_lexical_database/CLD/data-raw/chinese_lexical_database.Rmd
+TRACE [2019-10-10 21:08:35] Processing 1 of 1: /Users/Thomas/Google Drive/chinese_lexical_database/CLD/data-raw/chinese_lexical_database.Rmd
 
-TRACE [2019-10-10 20:26:47] 1 data set(s) created by chinese_lexical_database.Rmd
-TRACE [2019-10-10 20:26:53] NEWS.md file not found, creating!
-TRACE [2019-10-10 20:26:53] NEWS.md file found, updating!
-TRACE [2019-10-10 20:26:53] Saving to data
-TRACE [2019-10-10 20:26:57] Copied documentation to /Users/Thomas/Google Drive/chinese_lexical_database/CLD/R/CLD.R
-TRACE [2019-10-10 20:26:57] Done
-TRACE [2019-10-10 20:26:57] DataPackageR succeeded
-TRACE [2019-10-10 20:26:57] Building documentation
-TRACE [2019-10-10 20:27:02] Building package
-TRACE [2019-10-10 20:30:44] Rebuilding data package documentation.
-TRACE [2019-10-10 20:32:15] Rebuilding data package documentation.
-TRACE [2019-10-10 20:32:36] Logging to /Users/Thomas/Google Drive/chinese_lexical_database/CLD/inst/extdata/Logfiles/processing.log
-TRACE [2019-10-10 20:32:36] Processing data
-TRACE [2019-10-10 20:32:36] Reading yaml configuration
-TRACE [2019-10-10 20:32:36] Found /Users/Thomas/Google Drive/chinese_lexical_database/CLD/data-raw/chinese_lexical_database.Rmd
-TRACE [2019-10-10 20:32:36] Processing 1 of 1: /Users/Thomas/Google Drive/chinese_lexical_database/CLD/data-raw/chinese_lexical_database.Rmd
+TRACE [2019-10-10 21:08:37] 1 data set(s) created by chinese_lexical_database.Rmd
+TRACE [2019-10-10 21:08:43] NEWS.md file not found, creating!
+TRACE [2019-10-10 21:08:43] NEWS.md file found, updating!
+TRACE [2019-10-10 21:08:43] Saving to data
+TRACE [2019-10-10 21:08:48] Copied documentation to /Users/Thomas/Google Drive/chinese_lexical_database/CLD/R/CLD.R
+TRACE [2019-10-10 21:08:48] Done
+TRACE [2019-10-10 21:08:48] DataPackageR succeeded
+TRACE [2019-10-10 21:08:48] Building documentation
+TRACE [2019-10-10 21:08:50] Building package
+TRACE [2019-10-10 21:09:55] Rebuilding data package documentation.
+TRACE [2019-10-10 21:11:23] Rebuilding data package documentation.
+TRACE [2019-10-10 21:11:47] Logging to /Users/Thomas/Google Drive/chinese_lexical_database/CLD/inst/extdata/Logfiles/processing.log
+TRACE [2019-10-10 21:11:47] Processing data
+TRACE [2019-10-10 21:11:47] Reading yaml configuration
+TRACE [2019-10-10 21:11:47] Found /Users/Thomas/Google Drive/chinese_lexical_database/CLD/data-raw/chinese_lexical_database.Rmd
+TRACE [2019-10-10 21:11:47] Processing 1 of 1: /Users/Thomas/Google Drive/chinese_lexical_database/CLD/data-raw/chinese_lexical_database.Rmd
 
-TRACE [2019-10-10 20:32:37] 1 data set(s) created by chinese_lexical_database.Rmd
-TRACE [2019-10-10 20:32:42] NEWS.md file found, updating!
-TRACE [2019-10-10 20:32:42] Data hasn't changed but the DataVersion has been bumped.
-TRACE [2019-10-10 20:32:42] Saving to data
-TRACE [2019-10-10 20:32:47] Copied documentation to /Users/Thomas/Google Drive/chinese_lexical_database/CLD/R/CLD.R
-TRACE [2019-10-10 20:32:47] Done
-TRACE [2019-10-10 20:32:47] DataPackageR succeeded
-TRACE [2019-10-10 20:32:47] Building documentation
-TRACE [2019-10-10 20:32:51] Building package
+TRACE [2019-10-10 21:11:48] 1 data set(s) created by chinese_lexical_database.Rmd
+TRACE [2019-10-10 21:11:54] NEWS.md file found, updating!
+TRACE [2019-10-10 21:11:54] Data hasn't changed but the DataVersion has been bumped.
+TRACE [2019-10-10 21:11:54] Saving to data
+TRACE [2019-10-10 21:11:58] Copied documentation to /Users/Thomas/Google Drive/chinese_lexical_database/CLD/R/CLD.R
+TRACE [2019-10-10 21:11:59] Done
+TRACE [2019-10-10 21:11:59] DataPackageR succeeded
+TRACE [2019-10-10 21:11:59] Building documentation
+TRACE [2019-10-10 21:12:01] Building package

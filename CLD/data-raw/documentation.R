@@ -20,11 +20,16 @@ NULL
 #' @title The Chinese Lexical Database (CLD)
 #' @format a \code{data.frame} containing the following fields:
 #' \describe{
-#' \item{Word}{}
-#' \item{C1}{}
-#' \item{C2}{}
-#' \item{C3}{}
-#' \item{C4}{}
+#' \item{WordSimp}{}
+#' \item{S1}{}
+#' \item{S2}{}
+#' \item{S3}{}
+#' \item{S4}{}
+#' \item{WordTrad}{}
+#' \item{T1}{}
+#' \item{T2}{}
+#' \item{T3}{}
+#' \item{T4}{}
 #' \item{Length}{}
 #' \item{C1Structure}{}
 #' \item{C2Structure}{}
@@ -294,6 +299,3 @@ NULL
 #' @seealso
 #' \link{CLD}
 NULL
-
-
-
