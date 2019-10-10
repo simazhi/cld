@@ -1,3 +1,7 @@
+---
+output: github_document
+---
+
 # CLD — the Chinese Lexical Database
 
 This is a wrapper around the .rda file provided at http://www.chineselexicaldatabase.com/index.php
