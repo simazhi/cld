@@ -16,3 +16,10 @@ The CLD package contains the whole CLD version 2.1, with a few editions:
 
 This has been done in order to facilitate the usage in traditional texts. 
 Note, however, that the psycholinguistic findings of the CLD all still relate to traditional characters.
+
+The CLD package can be installed as follows:
+
+```
+devtools::install_github("simazhi/cld/CLD", 
+                         auth_token = AUTH_TOKEN) # need token as long as it's private
+```
