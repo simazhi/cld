@@ -19,6 +19,8 @@ Lexical Database (CLD): A large-scale lexical database for simplified
 Mandarin Chinese. Behavior Research Methods,
 <https://doi.org/10.3758/s13428-018-1038-3>.
 
+**Please refer to Sun et al.'s (2018) work when you make use of this database.**
+
 The CLD package contains the whole CLD version 2.1, with a few editions:
 
   - `Word` has been recoded as `WordSimp`
@@ -36,6 +38,5 @@ The CLD package can be installed as follows:
 ## Installation
 
 ``` r
-devtools::install_github("simazhi/cld/CLD", 
-                         auth_token = AUTH_TOKEN) # need token as long as it's private
+devtools::install_github("simazhi/cld/CLD") 
 ```
